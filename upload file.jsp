@@ -8,8 +8,8 @@ String file_location = request.getParameter("file");
 	try
 	{
 		Class.forName("com.mysql.cj.jdbc.Driver");
-		Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/food","root","Root@161");
-		File f = new File("C://Users//Vignesh//Downloads//"+file_location);
+		Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/uploader","root","Root@161");
+		File f = new File("C://Users//janani//Downloads//"+file_location);
 		FileInputStream csv_file = new FileInputStream(f);
 		PreparedStatement statement = connection.prepareStatement("insert into File values(?,?,?)");
 		statement.setString(1,name);
@@ -17,7 +17,7 @@ String file_location = request.getParameter("file");
 		statement.setString(3,Base64.getEncoder().encodeToString(password.getBytes()));
 		int flag =statement.executeUpdate();
 		if(flag>0){
-			response.sendRedirect("home.jsp?msg=success");
+		    response.sendRedirect("home.jsp?msg=success");
 		}
 	}
 	
